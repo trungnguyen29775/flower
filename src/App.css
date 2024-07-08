@@ -1404,3 +1404,12 @@ body {
 .not-loaded * {
   animation-play-state: paused !important;
 }
+
+.note{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  z-index: 4;
+  height: 100vh;
+  width: 100vw;
+}

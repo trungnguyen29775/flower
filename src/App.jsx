@@ -3,10 +3,13 @@ import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0);
 
+function App() {
+
+  const [state,setState]  =useState(true)
   const onload = () => {
+   
+    console.log(audio.muted)
     const c = setTimeout(() => {
       document.body.classList.remove("container");
       clearTimeout(c);
@@ -14,12 +17,21 @@ function App() {
   };
 
   useEffect(() => {
+
+    document.addEventListener('click',()=>
+    {
+      const audio = document.getElementById('audio');
+      setState(false)
+      audio.currentTime = 31;
+      audio.volume = 0.5;
+      audio.play()
+    })
     onload();
-  }, []);
+  }, [state]);
 
   return (
     <>
-      <div className="night"></div>
+      <div  className="night"></div>
       <div className="flowers">
         <div className="flower flower--1">
           <div className="flower__leafs flower__leafs--1">
@@ -184,6 +196,10 @@ function App() {
           </div>
         </div>
 
+        <audio id='audio'  muted={state} autoPlay loop>
+  <source src="sound.mp3" type="audio/ogg"/>
+</audio>
+
         <div className="grow-ans" style={{ '--d': '4.2s' }}>
           <div className="flower__g-bottom">
             <div className="flower__g-bottom__leaf-wrapper flower__g-bottom__leaf-wrapper--1">
@@ -203,6 +219,7 @@ function App() {
             </div>
           </div>
         </div>
+       
       </div>
     </>
   );
